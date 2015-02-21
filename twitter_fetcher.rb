@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'sinatra/jsonp'
-require 'rubygems'
 require 'twitter'
 
 class TwitterFetcher < Sinatra::Base

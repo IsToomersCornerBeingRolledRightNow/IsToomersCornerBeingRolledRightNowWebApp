@@ -1,3 +1,3 @@
 require './twitter_fetcher'
 
-run TwitterFetcher
+run IsToomersCornerBeingRolledRightNow

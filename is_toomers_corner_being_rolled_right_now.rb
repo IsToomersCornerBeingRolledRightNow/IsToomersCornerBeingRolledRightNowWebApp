@@ -79,7 +79,8 @@ class ToomersTweet
     Time.parse @hash[:cached_on]
   end
   def response
-    text.match(%r{[a-zA-Z0-9\-\_]*}).to_s
+    return 'No.' if is_stale?
+    text.split('#').first.strip
   end
   def needs_refresh?
     !cached_on || cached_on < Time.now - 75.seconds
@@ -115,7 +116,9 @@ class IsToomersCornerBeingRolledRightNow < Sinatra::Base
 
   get("/api"){redirect to('/api/')}
   get "/api/" do
-    json tweet.to_hash
+    hash = tweet.to_hash
+    hash[:stale] = tweet.is_stale?
+    json hash
   end
 
   get '/' do

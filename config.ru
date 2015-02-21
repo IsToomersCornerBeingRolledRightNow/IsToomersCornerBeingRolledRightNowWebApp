@@ -1,3 +1,3 @@
-require './twitter_fetcher'
+require './is_toomers_corner_being_rolled_right_now'
 
 run IsToomersCornerBeingRolledRightNow

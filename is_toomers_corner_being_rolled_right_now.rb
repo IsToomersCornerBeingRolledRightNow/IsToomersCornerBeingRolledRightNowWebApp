@@ -1,6 +1,7 @@
 require 'sinatra'
 require "sinatra/json"
 require 'twitter'
+require 'erb'
 
 class IsToomersCornerBeingRolledRightNow < Sinatra::Base
   helpers Sinatra::JSON
@@ -32,7 +33,7 @@ class IsToomersCornerBeingRolledRightNow < Sinatra::Base
   end
 
   def latest_tweet_oembed
-    @latest_tweet_oembed || @latest_tweet_oembed = @@twitter_client.oembed(latest_tweet.attrs[:id])
+    @latest_tweet_oembed || @latest_tweet_oembed = @@twitter_client.oembed(latest_tweet.attrs[:id], align: :center)
   end
 
   def latest_tweet_html
@@ -40,21 +41,22 @@ class IsToomersCornerBeingRolledRightNow < Sinatra::Base
   end
 
   def latest_tweet_response
-    latest_tweet.attrs[:text].split(' ').first[0...-1].downcase
+    latest_tweet.attrs[:text].match(%r{[a-zA-Z0-9]*.}).to_s
   end
 
   def latest_tweet_id
     latest_tweet.attrs[:id]
   end
 
-  get '/api/' do
+  get("/api"){redirect to('/api/')}
+  get "/api/" do
     json response: latest_tweet_response,
          id:       latest_tweet_id,
          html:     latest_tweet_html
   end
 
   get '/' do
-    'foo'
+    ERB.new(File.read 'view.html.erb').result(binding)
   end
 
 end

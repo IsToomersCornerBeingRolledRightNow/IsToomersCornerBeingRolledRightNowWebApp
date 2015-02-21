@@ -4,21 +4,32 @@
     <title>
       Is Toomer's Corner Being Rolled Right Now?
     </title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      html{text-align: center; height:100%;}
+      html{text-align: center;}
       h1{font-size:4em;}
       .wrapper{position: absolute;top: 50%; left: 50%;transform:translateY(-50%) translateX(-50%);}
+      small a {color:#ccc;}
     </style>
   </head>
   <body>
     <div class="wrapper">
       <div class="response">
         <h1>
-          <%= latest_tweet_response %>
+          <%= tweet_response %>
         </h1>
       </div>
-      <div class="embeded-tweet">
-        <%= latest_tweet_html %>
+      <% unless tweet_stale? %>
+        <div class="embeded-tweet">
+          <%= tweet_html %>
+        </div>
+      <% end %>
+      <div class="website-link">
+        <small>
+          <a href="http://istoomerscornerbeingrolledrightnow.github.io/">
+            http://istoomerscornerbeingrolledrightnow.github.io/
+          </a>
+        </small>
       </div>
     </div>
   </body>

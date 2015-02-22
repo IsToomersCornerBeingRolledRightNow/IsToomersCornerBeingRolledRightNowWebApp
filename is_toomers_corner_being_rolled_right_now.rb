@@ -20,20 +20,20 @@ end
 # store development keys in gitignored files
 if Sinatra::Base.development?
   CONSUMER_SECRET = File.read('.twitter_consumer_secret').strip
-  OAUTH_SECRET = File.read('.twitter_oauth_secret').strip
+  ACCESS_SECRET = File.read('.twitter_access_secret').strip
 # store production keys in environment variables
 else
   CONSUMER_SECRET = ENV['TWITTER_CONSUMER_SECRET']
-  OAUTH_SECRET = ENV['TWITTER_OAUTH_SECRET']
+  ACCESS_SECRET = ENV['TWITTER_ACCESS_SECRET']
 end
 
 # wire up Twitter using keys and secrets
-TWITTER_CLIENT = Twitter::Client.new(
-  :consumer_key       => 'go0ZzbprJtz5O65Wjlej0KIjT',
-  :consumer_secret    => CONSUMER_SECRET,
-  :oauth_token        => '3048458734-HQAB5Ng7D13REDNvWS5PX7FAlGExD0hcfwUiSii',
-  :oauth_token_secret => OAUTH_SECRET,
-)
+TWITTER_CLIENT = Twitter::REST::Client.new do |config|
+  config.consumer_key        = "go0ZzbprJtz5O65Wjlej0KIjT"
+  config.consumer_secret     = CONSUMER_SECRET
+  config.access_token        = "3048458734-HQAB5Ng7D13REDNvWS5PX7FAlGExD0hcfwUiSii"
+  config.access_token_secret = ACCESS_SECRET
+end
 
 # custom class to handle tweets, including serialization for persistence
 class ToomersTweet

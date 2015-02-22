@@ -86,7 +86,7 @@ class ToomersTweet
     !cached_on || cached_on < Time.now - 75.seconds
   end
   def is_stale?
-    created_at < Time.now - 2.hours
+    created_at < Time.now - 12.hours
   end
   def status
     if is_stale?

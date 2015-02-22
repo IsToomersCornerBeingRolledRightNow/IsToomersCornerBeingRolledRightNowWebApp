@@ -47,7 +47,7 @@ class ToomersTweet
         @cached = true
       end
       if !@hash || needs_refresh?
-        twitter_tweets = TWITTER_CLIENT.home_timeline(count:1)
+        twitter_tweets = TWITTER_CLIENT.user_timeline(TWITTER_CLIENT.user,count:1)
         twitter_tweet = twitter_tweets.first
         @hash = {
           id:         twitter_tweet.attrs[:id],
@@ -83,7 +83,7 @@ class ToomersTweet
     text.split('#').first.strip
   end
   def needs_refresh?
-    !cached_on || cached_on < Time.now - 75.seconds
+    !cached_on || cached_on < Time.now - 61.seconds
   end
   def is_stale?
     created_at < Time.now - 12.hours

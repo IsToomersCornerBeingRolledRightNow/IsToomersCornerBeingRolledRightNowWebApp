@@ -31,7 +31,7 @@ end
 TWITTER_CLIENT = Twitter::Client.new(
   :consumer_key       => 'zHdSQhFBWP3w2MtLYqvejrJcH',
   :consumer_secret    => CONSUMER_SECRET,
-  :oauth_token        => '3048458734-W2JDpijwRaJ8GWAMzWDV4ErPfwSI8hGADgXLgCX',
+  :oauth_token        => '3048458734-Wbg5HJhHpHwDaceDCYUp0N8wmQYErAYrMtrxvM0',
   :oauth_token_secret => OAUTH_SECRET,
 )
 

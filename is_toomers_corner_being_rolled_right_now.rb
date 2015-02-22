@@ -29,9 +29,9 @@ end
 
 # wire up Twitter using keys and secrets
 TWITTER_CLIENT = Twitter::Client.new(
-  :consumer_key       => 'zHdSQhFBWP3w2MtLYqvejrJcH',
+  :consumer_key       => 'go0ZzbprJtz5O65Wjlej0KIjT',
   :consumer_secret    => CONSUMER_SECRET,
-  :oauth_token        => '3048458734-Wbg5HJhHpHwDaceDCYUp0N8wmQYErAYrMtrxvM0',
+  :oauth_token        => '3048458734-HQAB5Ng7D13REDNvWS5PX7FAlGExD0hcfwUiSii',
   :oauth_token_secret => OAUTH_SECRET,
 )
 

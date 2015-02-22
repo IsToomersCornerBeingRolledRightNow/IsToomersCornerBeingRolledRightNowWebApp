@@ -79,7 +79,7 @@ class ToomersTweet
     Time.parse @hash[:cached_on]
   end
   def response
-    return 'No.' if is_stale?
+    return 'No...' if is_stale?
     text.split('#').first.strip
   end
   def needs_refresh?
@@ -87,13 +87,6 @@ class ToomersTweet
   end
   def is_stale?
     created_at < Time.now - 12.hours
-  end
-  def status
-    if is_stale?
-      'No.'
-    else
-      response
-    end
   end
   def to_json
     JSON.dump @hash
